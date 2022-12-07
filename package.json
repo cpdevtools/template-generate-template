@@ -3,14 +3,18 @@
     "repository": "https://github.com/cpdevtools/template-generate-template",
     "version": "0.0.1-dev.0",
     "scripts": {
-        "prepare": ""
+        "prepare": "run-s prepare:*",
+        "prepare:clean-tags": "pnpm run clean-tags",
+        "clean-tags": "git tag | xargs git tag -d"
     },
     "devDependencies": {
         "npm-run-all2": "^6.0.4"
     },
     "package-template": {
         "scripts": {
-            "prepare": ""
+            "prepare": "run-s prepare:*",
+            "prepare:clean-tags": "git tag | xargs git tag -d",
+            "prepare:apply-template": "ls -al"
         }
     }
 }
