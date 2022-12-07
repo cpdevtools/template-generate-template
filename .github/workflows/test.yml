@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v3
       
       - uses: cpdevtools/action-template@dev
-        if: ${{ 'a' == 'b' }}
-        with: 
-          action: init-fork
+        if: ${{ github.repository != 'cpdevtools/template-generate-template' }}
+        # with: 
+        #   action: init-fork
 
       - name: Test
         run: ls -al
