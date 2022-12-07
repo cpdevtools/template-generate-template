@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish:
-    name: Publish a new version
+    name: Prepare template for initialization
     runs-on: ubuntu-latest
     if: ${{ github.repository != 'cpdevtools/template-generate-template' }}
     steps:
