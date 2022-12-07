@@ -17,6 +17,3 @@ jobs:
         if: ${{ github.repository != 'cpdevtools/template-generate-template' }}
         with:
           action: init-fork
-
-      - name: Test
-        run: ls -al
