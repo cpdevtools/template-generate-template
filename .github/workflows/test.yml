@@ -6,18 +6,17 @@ on:
       - main
       - master
 
-
 jobs:
   publish:
     name: Publish a new version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - uses: cpdevtools/action-template@dev
         if: ${{ github.repository != 'cpdevtools/template-generate-template' }}
-        # with: 
-        #   action: init-fork
+        with:
+          action: init-fork
 
       - name: Test
         run: ls -al
