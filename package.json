@@ -2,5 +2,15 @@
     "name": "@cpdevtools/template-generate-template",
     "repository": "https://github.com/cpdevtools/template-generate-template",
     "version": "0.0.1-dev.0",
-    "package-template": {}
+    "scripts": {
+        "prepare": ""
+    },
+    "devDependencies": {
+        "npm-run-all2": "^6.0.4"
+    },
+    "package-template": {
+        "scripts": {
+            "prepare": ""
+        }
+    }
 }
