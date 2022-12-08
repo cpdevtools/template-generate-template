@@ -1,30 +1,30 @@
 {
-    "$schema": "http://json-schema.org/schema",
-    "$id": "Options",
-    "title": "Options",
-    "type": "object",
-    "properties": {
-      "sourcePath": {
-        "description": "The path to the source templates",
-        "type": "string",
-        "default": "src"
-      },
-      "clean": {
-        "description": "delete the contents destPath before writing template",
-        "type": "boolean",
-        "default": true
-      },
-      "data": {
-        "description": "The data for use in the templates",
-        "type": "object"
-      },
-      "dataJson": {
-        "description": "The data for use in the templates as a json string",
-        "type": "string"
-      },
-      "dataFile": {
-        "description": "The path to a file that contains the data for use in the templates",
-        "type": "string"
-      }
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Options",
+  "title": "Options",
+  "type": "object",
+  "properties": {
+    "sourcePath": {
+      "description": "The path to the source templates",
+      "type": "string",
+      "default": "src"
+    },
+    "clean": {
+      "description": "delete the contents destPath before writing template",
+      "type": "boolean",
+      "default": true
+    },
+    "data": {
+      "description": "The data for use in the templates",
+      "type": "object"
+    },
+    "dataJson": {
+      "description": "The data for use in the templates as a json string",
+      "type": "string"
+    },
+    "dataFile": {
+      "description": "The path to a file that contains the data for use in the templates",
+      "type": "string"
     }
+  }
 }
