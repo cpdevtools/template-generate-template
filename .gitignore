@@ -1,2 +1,6 @@
 # Dependency directory
 node_modules
+
+schematic/**/*.js
+schematic/**/*.js.map
+schematic/**/*.d.ts

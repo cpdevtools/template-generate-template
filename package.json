@@ -5,16 +5,24 @@
     "scripts": {
         "prepare": "run-s prepare:*",
         "prepare:clean-tags": "pnpm run clean-tags",
-        "clean-tags": "git tag | xargs git tag -d"
+        "clean-tags": "git tag | xargs git tag -d",
+        "build": "tsc -p schematic/tsconfig.json",
+        "test": "schematics .:initialize"
     },
+    "schematics": "./schematic/collection.json",
     "devDependencies": {
-        "npm-run-all2": "^6.0.4"
+        "@angular-devkit/schematics": "^15.0.2",
+        "@angular-devkit/schematics-cli": "^15.0.2",
+        "@cpdevtools/lib-node-utilities": "^0.4.49",
+        "@types/node": "^18.11.11",
+        "npm-run-all2": "^6.0.4",
+        "typescript": "^4.9.3"
     },
     "package-template": {
         "scripts": {
             "prepare": "run-s prepare:*",
-            "prepare:clean-tags": "git tag | xargs git tag -d",
-            "prepare:apply-template": "ls -al"
+            "prepare:build": "tsc -p src/tsconfig.json",
+            "prepare:initialize": "schematics .:initialize --debug=false"
         }
     }
 }
