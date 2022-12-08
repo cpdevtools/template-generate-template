@@ -8,6 +8,7 @@
     "prepare:husky": "husky install",
     "prepare:build": "pnpm run build",
     "pre-commit": "run-s pre-commit:*",
+    "pre-commit:build": "pnpm run build",
     "pre-commit:tags": "pnpm run clean-tags",
     "clean-tags": "git tag | xargs git tag -d",
     "build": "tsc -p schematic/tsconfig.json",
