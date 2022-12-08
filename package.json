@@ -7,6 +7,8 @@
     "prepare:clean-tags": "pnpm run clean-tags",
     "prepare:husky": "husky install",
     "prepare:build": "pnpm run build",
+    "pre-commit": "run-s pre-commit:*",
+    "pre-commit:tags": "pnpm run clean-tags",
     "clean-tags": "git tag | xargs git tag -d",
     "build": "tsc -p schematic/tsconfig.json",
     "test": "schematics .:initialize --data-file=template-options.js",
@@ -18,12 +20,16 @@
     "fix:prettier": "prettier --write --ignore-unknown ."
   },
   "schematics": "./schematic/collection.json",
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
   "devDependencies": {
     "@angular-devkit/schematics": "^15.0.2",
     "@angular-devkit/schematics-cli": "^15.0.2",
     "@cpdevtools/lib-node-utilities": "^0.4.49",
     "@types/node": "^18.11.11",
     "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "npm-run-all2": "^6.0.4",
     "prettier": "^2.8.1",
     "type-fest": "^3.3.0",
