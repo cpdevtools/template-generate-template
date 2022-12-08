@@ -5,10 +5,15 @@
     "scripts": {
         "prepare": "run-s prepare:*",
         "prepare:clean-tags": "pnpm run clean-tags",
+        "prepare:husky": "husky install",
+        "prepare:build": "pnpm run build",
         "clean-tags": "git tag | xargs git tag -d",
         "build": "tsc -p schematic/tsconfig.json",
         "test": "schematics .:initialize --data-file=template-options.js",
-        "reset-hard": "git clean -dfx && git reset --hard && pnpm i"
+        "reset-hard": "run-s reset-hard:*",
+        "reset-hard:git-clean": "git clean -dfx && git reset --hard",
+        "reset-hard:install": "pnpm install",
+        "start": "tsc -w -p schematic/tsconfig.json"
     },
     "schematics": "./schematic/collection.json",
     "devDependencies": {
