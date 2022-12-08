@@ -6,6 +6,7 @@ specifiers:
   '@cpdevtools/lib-node-utilities': ^0.4.49
   '@types/node': ^18.11.11
   npm-run-all2: ^6.0.4
+  type-fest: ^3.3.0
   typescript: ^4.9.3
 
 devDependencies:
@@ -14,6 +15,7 @@ devDependencies:
   '@cpdevtools/lib-node-utilities': 0.4.49
   '@types/node': 18.11.11
   npm-run-all2: 6.0.4
+  type-fest: 3.3.0
   typescript: 4.9.3
 
 packages:

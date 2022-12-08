@@ -7,7 +7,8 @@
         "prepare:clean-tags": "pnpm run clean-tags",
         "clean-tags": "git tag | xargs git tag -d",
         "build": "tsc -p schematic/tsconfig.json",
-        "test": "schematics .:initialize"
+        "test": "schematics .:initialize --data-file=template-options.js",
+        "reset-hard": "git clean -dfx && git reset --hard && pnpm i"
     },
     "schematics": "./schematic/collection.json",
     "devDependencies": {
@@ -16,13 +17,14 @@
         "@cpdevtools/lib-node-utilities": "^0.4.49",
         "@types/node": "^18.11.11",
         "npm-run-all2": "^6.0.4",
+        "type-fest": "^3.3.0",
         "typescript": "^4.9.3"
     },
     "package-template": {
         "scripts": {
             "prepare": "run-s prepare:*",
             "prepare:build": "tsc -p src/tsconfig.json",
-            "prepare:initialize": "schematics .:initialize --debug=false"
+            "prepare:initialize": "schematics .:initialize --debug=false --data-file=template-options.js"
         }
     }
 }

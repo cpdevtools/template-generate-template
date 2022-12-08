@@ -1,6 +1,8 @@
 import { apply, chain, mergeWith, renameTemplateFiles, Rule, SchematicContext, strings, template, Tree, url } from "@angular-devkit/schematics";
 import Path from 'path/posix';
-import { readJsonFile } from '@cpdevtools/lib-node-utilities';
+import { readJsonFile, readYamlFile } from '@cpdevtools/lib-node-utilities';
+import { existsSync } from "fs";
+import type { PackageJson } from 'type-fest'
 
 export interface Options {
     sourcePath: string;
@@ -23,16 +25,27 @@ function generateTemplate(options: Options) {
         if (options.dataJson) {
             try { data = JSON.parse(options.dataJson) } catch { }
         } else if (options.dataFile) {
-            const ext = Path.extname(options.dataFile);
-            switch (ext) {
-                case '.json':
-                    data = await readJsonFile(options.dataFile);
-                    break;
+            let filePath = Path.normalize(options.dataFile);
+            if (!filePath.startsWith('/')) {
+                filePath = Path.join(process.cwd(), filePath);
+            }
 
+            const ext = Path.extname(filePath).toLowerCase();
+            switch (ext) {
+                case '.js':
+                    data = require(filePath).default;
+                    break;
+                case '.json':
+                    data = await readJsonFile(filePath);
+                    break;
+                case '.yml':
+                case '.yaml':
+                    data = await readYamlFile(filePath);
+                    break;
             }
         }
 
-        const tplOpts = {
+        const tplOpts: any = {
             ...data,
             dot: ".",
             strings: {
@@ -41,6 +54,14 @@ function generateTemplate(options: Options) {
                 upper: (str: string) => str.toUpperCase(),
             },
         };
+
+        const packagePath = Path.join(process.cwd(), 'package.json');
+        const pkg = existsSync(packagePath) ? (await readJsonFile(packagePath) as PackageJson) : null;
+        if (pkg) {
+            tplOpts.package = pkg;
+        }
+
+        console.log(tplOpts);
 
         return mergeWith(
             apply(url(sourcePath), [
