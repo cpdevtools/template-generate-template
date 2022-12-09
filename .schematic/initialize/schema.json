@@ -4,22 +4,10 @@
   "title": "Options",
   "type": "object",
   "properties": {
-    "sourcePath": {
-      "description": "The path to the source templates",
-      "type": "string"
-    },
-    "clean": {
-      "description": "delete the contents destPath before writing template",
-      "type": "boolean",
-      "default": true
-    },
-    "dataFile": {
-      "description": "The path to a file that contains the data for use in the templates",
-      "type": "string"
-    },
-    "versionFile": {
-      "description": "The path to a file that contains the versions for use in the templates",
-      "type": "string"
+    "templatePath": {
+      "description": "The path to the source template",
+      "type": "string",
+      "default": "template"
     }
   }
 }

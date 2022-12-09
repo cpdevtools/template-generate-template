@@ -18,21 +18,18 @@ import { existsSync } from "fs";
 import type { PackageJson } from "type-fest";
 
 export interface Options {
-  sourcePath: string;
-  clean: boolean;
-  versionFile: string;
-  dataFile: string;
+  templatePath: string;
 }
 
 function generateTemplate(options: Options) {
   return async () => {
-    let sourcePath = Path.normalize(options.sourcePath);
-    if (!sourcePath.startsWith("/")) {
-      sourcePath = Path.join(process.cwd(), sourcePath);
+    let templatePath = Path.normalize(options.templatePath);
+    if (!templatePath.startsWith("/")) {
+      templatePath = Path.join(process.cwd(), templatePath);
     }
 
-    let data = (await readDataFile(options.dataFile)) ?? {};
-    let versions = (await readDataFile(options.versionFile)) ?? {};
+    let data = (await readDataFile(Path.join(templatePath, "options"))) ?? {};
+    let versions = (await readDataFile(Path.join(templatePath, "versions"))) ?? {};
 
     const tplOpts: any = {
       ...data,
@@ -59,20 +56,18 @@ function generateTemplate(options: Options) {
       };
     }
 
-    return mergeWith(apply(url(sourcePath), [template(tplOpts), renameTemplateFiles()]));
+    return mergeWith(apply(url(Path.join(templatePath, "files")), [template(tplOpts), renameTemplateFiles()]));
   };
 }
 
-async function readDataFile<T = unknown>(dataFile: string) {
-  if (dataFile) {
-    let filePath = Path.normalize(dataFile);
-    if (!filePath.startsWith("/")) {
-      filePath = Path.join(process.cwd(), filePath);
-    }
+async function readDataFile<T = unknown>(dataPath: string) {
+  const filePath = [`${dataPath}.js`, `${dataPath}.yaml`, `${dataPath}.yml`, `${dataPath}.json`, `${dataPath}`].find((f) => existsSync(f));
+
+  if (filePath) {
     const ext = Path.extname(filePath).toLowerCase();
     switch (ext) {
       case ".js":
-        return require(filePath).default as T;
+        return (await require(filePath).default) as T;
       case ".json":
         return (await readJsonFile(filePath)) as T;
       case ".yml":
@@ -93,9 +88,19 @@ function cleanDest(_: Options) {
 
 export function initialize(options: Options): Rule {
   const rules: Rule[] = [];
-  if (options.clean) {
-    //rules.push(cleanDest(options));
-  }
+
+  rules.push(cleanGenerator(options));
   rules.push(mergeWith(apply(empty(), [generateTemplate(options)]), MergeStrategy.Overwrite));
   return chain(rules);
+}
+
+function cleanGenerator(_: Options) {
+  return async (tree: Tree, _: SchematicContext) => {
+    try {
+      tree.delete(".template");
+    } catch {}
+    try {
+      tree.delete("pnpm-lock.yaml");
+    } catch {}
+  };
 }
