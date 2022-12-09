@@ -39,7 +39,7 @@
   "package-template": {
     "scripts": {
       "prepare": "run-s prepare:*",
-      "prepare:build": "tsc -p src/tsconfig.json",
+      "prepare:build": "tsc -p schematic/tsconfig.json",
       "prepare:initialize": "schematics .:initialize --debug=false --data-file=template-options.js"
     }
   }
