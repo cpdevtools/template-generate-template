@@ -12,7 +12,7 @@
     "pre-commit:tags": "pnpm run clean-tags",
     "clean-tags": "git tag | xargs git tag -d",
     "build": "tsc -p .schematic/tsconfig.json",
-    "test": "schematics .:initialize --data-file=src/template-options.js",
+    "test": "schematics .:initialize --data-file=src/template-options.js --version-file=src/versions.json",
     "reset-hard": "run-s reset-hard:*",
     "reset-hard:git-clean": "git clean -dfx && git reset --hard",
     "reset-hard:install": "pnpm install",
@@ -40,7 +40,7 @@
     "scripts": {
       "prepare": "run-s prepare:*",
       "prepare:build": "tsc -p .schematic/tsconfig.json",
-      "prepare:initialize": "schematics .:initialize --debug=false --data-file=src/template-options.js"
+      "prepare:initialize": "schematics .:initialize --debug=false --data-file=src/template-options.js  --version-file=src/versions.json"
     }
   }
 }

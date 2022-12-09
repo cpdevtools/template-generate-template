@@ -1,6 +1,8 @@
 import {
   apply,
   chain,
+  empty,
+  MergeStrategy,
   mergeWith,
   renameTemplateFiles,
   Rule,
@@ -40,7 +42,7 @@ function generateTemplate(options: Options) {
         lower: (str: string) => str.toLowerCase(),
         upper: (str: string) => str.toUpperCase(),
       },
-      versions
+      versions,
     };
 
     const packagePath = Path.join(process.cwd(), "package.json");
@@ -50,12 +52,12 @@ function generateTemplate(options: Options) {
     if (pkg) {
       tplOpts.package = pkg;
 
-      const p = pkg.name?.split('/');
+      const p = pkg.name?.split("/");
       const repoOwner = p?.shift()?.slice(1);
-      const repoName = p?.join('/');
+      const repoName = p?.join("/");
       tplOpts.repo = {
         owner: repoOwner,
-        name: repoName
+        name: repoName,
       };
     }
 
@@ -95,11 +97,16 @@ function cleanDest(_: Options) {
 
 export function initialize(options: Options): Rule {
   const rules: Rule[] = [];
-
   if (options.clean) {
     rules.push(cleanDest(options));
   }
-
-  rules.push(generateTemplate(options));
+  rules.push(
+    mergeWith(
+      apply(empty(), [
+        generateTemplate(options)
+      ]),
+      MergeStrategy.Overwrite
+    ),
+  );
   return chain(rules);
 }

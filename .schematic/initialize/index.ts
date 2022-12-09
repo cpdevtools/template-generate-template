@@ -1,6 +1,8 @@
 import {
   apply,
   chain,
+  empty,
+  MergeStrategy,
   mergeWith,
   renameTemplateFiles,
   Rule,
@@ -59,8 +61,6 @@ function generateTemplate(options: Options) {
       };
     }
 
-    console.log(tplOpts);
-
     return mergeWith(
       apply(url(sourcePath), [template(tplOpts), renameTemplateFiles()])
     );
@@ -95,20 +95,16 @@ function cleanDest(_: Options) {
   };
 }
 
-function header(options: Options) {
-  return async (_: Tree, context: SchematicContext) => {
-    context.logger.info("Initializing...");
-    console.info("options:", options);
-  };
-}
-
 export function initialize(options: Options): Rule {
-  const rules: Rule[] = [header(options)];
-
+  const rules: Rule[] = [];
   if (options.clean) {
     rules.push(cleanDest(options));
   }
-
-  rules.push(generateTemplate(options));
+  rules.push(
+    mergeWith(
+      apply(empty(), [generateTemplate(options)]),
+      MergeStrategy.Overwrite
+    )
+  );
   return chain(rules);
 }
