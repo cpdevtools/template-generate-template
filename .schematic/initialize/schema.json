@@ -7,23 +7,19 @@
     "sourcePath": {
       "description": "The path to the source templates",
       "type": "string",
-      "default": "src"
+      "default": "src/initialize"
     },
     "clean": {
       "description": "delete the contents destPath before writing template",
       "type": "boolean",
       "default": true
     },
-    "data": {
-      "description": "The data for use in the templates",
-      "type": "object"
-    },
-    "dataJson": {
-      "description": "The data for use in the templates as a json string",
-      "type": "string"
-    },
     "dataFile": {
       "description": "The path to a file that contains the data for use in the templates",
+      "type": "string"
+    },
+    "versionFile": {
+      "description": "The path to a file that contains the versions for use in the templates",
       "type": "string"
     }
   }

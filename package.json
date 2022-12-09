@@ -11,16 +11,16 @@
     "pre-commit:build": "pnpm run build",
     "pre-commit:tags": "pnpm run clean-tags",
     "clean-tags": "git tag | xargs git tag -d",
-    "build": "tsc -p schematic/tsconfig.json",
-    "test": "schematics .:initialize --data-file=template-options.js",
+    "build": "tsc -p .schematic/tsconfig.json",
+    "test": "schematics .:initialize --data-file=src/template-options.js",
     "reset-hard": "run-s reset-hard:*",
     "reset-hard:git-clean": "git clean -dfx && git reset --hard",
     "reset-hard:install": "pnpm install",
-    "start": "tsc -w -p schematic/tsconfig.json",
+    "start": "tsc -w -p .schematic/tsconfig.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier --write --ignore-unknown ."
   },
-  "schematics": "./schematic/collection.json",
+  "schematics": ".schematic/collection.json",
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
   },
@@ -39,8 +39,8 @@
   "package-template": {
     "scripts": {
       "prepare": "run-s prepare:*",
-      "prepare:build": "tsc -p schematic/tsconfig.json",
-      "prepare:initialize": "schematics .:initialize --debug=false --data-file=template-options.js"
+      "prepare:build": "tsc -p .schematic/tsconfig.json",
+      "prepare:initialize": "schematics .:initialize --debug=false --data-file=src/template-options.js"
     }
   }
 }

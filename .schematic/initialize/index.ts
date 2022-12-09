@@ -18,8 +18,7 @@ import type { PackageJson } from "type-fest";
 export interface Options {
   sourcePath: string;
   clean: boolean;
-  data: object;
-  dataJson: string;
+  versionFile: string;
   dataFile: string;
 }
 
@@ -30,31 +29,8 @@ function generateTemplate(options: Options) {
       sourcePath = Path.join(process.cwd(), sourcePath);
     }
 
-    let data = options.data ?? {};
-    if (options.dataJson) {
-      try {
-        data = JSON.parse(options.dataJson);
-      } catch {}
-    } else if (options.dataFile) {
-      let filePath = Path.normalize(options.dataFile);
-      if (!filePath.startsWith("/")) {
-        filePath = Path.join(process.cwd(), filePath);
-      }
-
-      const ext = Path.extname(filePath).toLowerCase();
-      switch (ext) {
-        case ".js":
-          data = require(filePath).default;
-          break;
-        case ".json":
-          data = await readJsonFile(filePath);
-          break;
-        case ".yml":
-        case ".yaml":
-          data = await readYamlFile(filePath);
-          break;
-      }
-    }
+    let data = (await readDataFile(options.dataFile)) ?? {};
+    let versions = (await readDataFile(options.versionFile)) ?? {};
 
     const tplOpts: any = {
       ...data,
@@ -64,6 +40,7 @@ function generateTemplate(options: Options) {
         lower: (str: string) => str.toLowerCase(),
         upper: (str: string) => str.toUpperCase(),
       },
+      versions,
     };
 
     const packagePath = Path.join(process.cwd(), "package.json");
@@ -80,6 +57,26 @@ function generateTemplate(options: Options) {
       apply(url(sourcePath), [template(tplOpts), renameTemplateFiles()])
     );
   };
+}
+
+async function readDataFile<T = unknown>(dataFile: string) {
+  if (dataFile) {
+    let filePath = Path.normalize(dataFile);
+    if (!filePath.startsWith("/")) {
+      filePath = Path.join(process.cwd(), filePath);
+    }
+    const ext = Path.extname(filePath).toLowerCase();
+    switch (ext) {
+      case ".js":
+        return require(filePath).default as T;
+      case ".json":
+        return (await readJsonFile(filePath)) as T;
+      case ".yml":
+      case ".yaml":
+        return (await readYamlFile(filePath)) as T;
+    }
+  }
+  return undefined;
 }
 
 function cleanDest(_: Options) {

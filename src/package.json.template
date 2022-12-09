@@ -1,4 +1,0 @@
-{
-    "name": "<%= package.name %>",
-    "repository": "<%= package.repository %>"
-}
