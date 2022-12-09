@@ -40,7 +40,7 @@ function generateTemplate(options: Options) {
         lower: (str: string) => str.toLowerCase(),
         upper: (str: string) => str.toUpperCase(),
       },
-      versions,
+      versions
     };
 
     const packagePath = Path.join(process.cwd(), "package.json");
@@ -50,16 +50,14 @@ function generateTemplate(options: Options) {
     if (pkg) {
       tplOpts.package = pkg;
 
-      const p = pkg.name?.split("/");
+      const p = pkg.name?.split('/');
       const repoOwner = p?.shift()?.slice(1);
-      const repoName = p?.join("/");
+      const repoName = p?.join('/');
       tplOpts.repo = {
         owner: repoOwner,
-        name: repoName,
+        name: repoName
       };
     }
-
-    console.log(tplOpts);
 
     return mergeWith(
       apply(url(sourcePath), [template(tplOpts), renameTemplateFiles()])
@@ -95,15 +93,8 @@ function cleanDest(_: Options) {
   };
 }
 
-function header(options: Options) {
-  return async (_: Tree, context: SchematicContext) => {
-    context.logger.info("Initializing...");
-    console.info("options:", options);
-  };
-}
-
 export function initialize(options: Options): Rule {
-  const rules: Rule[] = [header(options)];
+  const rules: Rule[] = [];
 
   if (options.clean) {
     rules.push(cleanDest(options));

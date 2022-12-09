@@ -1,5 +1,0 @@
-import { } from '@actions/core';
-
-(async () => {
-    // RUN ACTION
-})();
