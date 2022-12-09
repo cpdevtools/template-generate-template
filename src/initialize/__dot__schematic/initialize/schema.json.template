@@ -6,8 +6,7 @@
   "properties": {
     "sourcePath": {
       "description": "The path to the source templates",
-      "type": "string",
-      "default": "src/initialize"
+      "type": "string"
     },
     "clean": {
       "description": "delete the contents destPath before writing template",

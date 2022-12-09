@@ -23,5 +23,5 @@
     "typeRoots": ["../node_modules/@types", "../types"]
   },
   "include": ["**/*", ".scripts"],
-  "exclude": ["*/files/**/*"]
+  "exclude": []
 }

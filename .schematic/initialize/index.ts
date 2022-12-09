@@ -46,9 +46,7 @@ function generateTemplate(options: Options) {
     };
 
     const packagePath = Path.join(process.cwd(), "package.json");
-    const pkg = existsSync(packagePath)
-      ? ((await readJsonFile(packagePath)) as PackageJson)
-      : null;
+    const pkg = existsSync(packagePath) ? ((await readJsonFile(packagePath)) as PackageJson) : null;
     if (pkg) {
       tplOpts.package = pkg;
 
@@ -61,9 +59,7 @@ function generateTemplate(options: Options) {
       };
     }
 
-    return mergeWith(
-      apply(url(sourcePath), [template(tplOpts), renameTemplateFiles()])
-    );
+    return mergeWith(apply(url(sourcePath), [template(tplOpts), renameTemplateFiles()]));
   };
 }
 
@@ -98,13 +94,8 @@ function cleanDest(_: Options) {
 export function initialize(options: Options): Rule {
   const rules: Rule[] = [];
   if (options.clean) {
-    rules.push(cleanDest(options));
+    //rules.push(cleanDest(options));
   }
-  rules.push(
-    mergeWith(
-      apply(empty(), [generateTemplate(options)]),
-      MergeStrategy.Overwrite
-    )
-  );
+  rules.push(mergeWith(apply(empty(), [generateTemplate(options)]), MergeStrategy.Overwrite));
   return chain(rules);
 }

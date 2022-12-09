@@ -89,6 +89,7 @@ async function readDataFile<T = unknown>(dataFile: string) {
 
 function cleanDest(_: Options) {
   return async (tree: Tree, _: SchematicContext) => {
+
     const dir = tree.getDir(".");
     dir.subdirs.forEach((d) => d === ".git" || tree.delete(d));
     dir.subfiles.forEach((d) => tree.delete(d));
@@ -98,15 +99,13 @@ function cleanDest(_: Options) {
 export function initialize(options: Options): Rule {
   const rules: Rule[] = [];
   if (options.clean) {
-    rules.push(cleanDest(options));
+    //rules.push(cleanDest(options));
   }
   rules.push(
     mergeWith(
-      apply(empty(), [
-        generateTemplate(options)
-      ]),
+      apply(empty(), [generateTemplate(options)]),
       MergeStrategy.Overwrite
-    ),
+    )
   );
   return chain(rules);
 }
