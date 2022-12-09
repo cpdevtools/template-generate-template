@@ -38,8 +38,7 @@ function generateTemplate(options: Options) {
         ...strings,
         lower: (str: string) => str.toLowerCase(),
         upper: (str: string) => str.toUpperCase(),
-        json: (obj: any) => JSON.stringify(obj),
-        pjson: (obj: any) => JSON.stringify(obj, undefined, 2),
+        json: (obj: any, indent?: number) => JSON.stringify(obj, undefined, indent),
       },
       versions,
     };

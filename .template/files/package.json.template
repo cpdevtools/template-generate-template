@@ -49,5 +49,5 @@
             "prepare:initialize": "schematics .:initialize --debug=false"
         }
     },
-    "fromTemplate": <%= strings.json(package.fromTemplate) %>
+    "fromTemplate": <%= strings.json(package.fromTemplate, 2) %>
 }
