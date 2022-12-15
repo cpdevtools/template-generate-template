@@ -25,8 +25,9 @@ runs:
         cache: "pnpm"
         cache-dependency-path: pnpm-lock.yaml
         registry-url: https://npm.pkg.github.com/
+        scope: ${{ github.repository_owner }}
+
         #always-auth: true
-        #scope: ${{ github.repository_owner }}
 
     - run: |
         echo ${{github.repository_owner}}
