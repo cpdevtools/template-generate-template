@@ -20,6 +20,8 @@ runs:
         run_install: false
 
     - uses: actions/setup-node@v3
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         node-version: ${{ inputs.nodeVersion }}
         cache: "pnpm"
@@ -27,3 +29,5 @@ runs:
 
     - run: pnpm install --ignore-scripts --frozen-lockfile
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
