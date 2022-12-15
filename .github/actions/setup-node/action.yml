@@ -14,19 +14,16 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: pnpm/action-setup@v2.2.2
+      with:
+        version: ${{ inputs.pnpmVersion }}
+        run_install: false
+
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.nodeVersion }}
         cache: "pnpm"
         cache-dependency-path: pnpm-lock.yaml
-        registry-url: https://npm.pkg.github.com/
-        always-auth: true
-        scope: ${{ github.repository_owner }}
-
-    - uses: pnpm/action-setup@v2.2.2
-      with:
-        version: ${{ inputs.pnpmVersion }}
-        run_install: false
 
     - run: pnpm install --ignore-scripts --frozen-lockfile
       shell: bash
