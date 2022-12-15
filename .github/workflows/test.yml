@@ -28,9 +28,9 @@ jobs:
 
       - run: |
           echo ${{github.repository_owner}}
-          pnpm install --ignore-scripts --frozen-lockfile
+          pnpm install --ignore-scripts
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
 
-      - uses: ./.github/actions/setup-node
+      # - uses: ./.github/actions/setup-node
