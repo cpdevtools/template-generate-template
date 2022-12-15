@@ -14,12 +14,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: pnpm/action-setup@v2.2.2
+    - uses: pnpm/action-setup@v2.2.4
       with:
         version: ${{ inputs.pnpmVersion }}
         run_install: false
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3.5.1
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:

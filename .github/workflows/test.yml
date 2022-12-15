@@ -12,6 +12,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install
+      - name: Checkout Project
+        uses: ./.github/actions/checkout
+
+      - name: Install Node & Dependencies
         uses: ./.github/actions/setup-node
