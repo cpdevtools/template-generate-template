@@ -10,22 +10,11 @@ inputs:
     description: "The version of NodeJs to install"
     required: false
     default: "16.18.x"
-  githubToken:
-    description: "The version of NodeJs to install"
-    required: false
-    default: ${{ github.token }}
 
 runs:
   using: "composite"
   steps:
-    - uses: pnpm/action-setup@v2.2.2
-      with:
-        version: ${{ inputs.pnpmVersion }}
-        run_install: false
-
     - uses: actions/setup-node@v3
-      env:
-        GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
         node-version: ${{ inputs.nodeVersion }}
         cache: "pnpm"
@@ -33,9 +22,11 @@ runs:
         registry-url: https://npm.pkg.github.com/
         always-auth: true
         scope: ${{ github.repository_owner }}
-        token: ${{ inputs.githubToken }}
+
+    - uses: pnpm/action-setup@v2.2.2
+      with:
+        version: ${{ inputs.pnpmVersion }}
+        run_install: false
 
     - run: pnpm install --ignore-scripts --frozen-lockfile
       shell: bash
-      env:
-        GITHUB_TOKEN: ${{ inputs.githubToken }}
