@@ -28,5 +28,7 @@ runs:
         #always-auth: true
         #scope: ${{ github.repository_owner }}
 
-    - run: pnpm install --ignore-scripts --frozen-lockfile
+    - run: |
+        echo ${{github.repository_owner}}
+        pnpm install --ignore-scripts --frozen-lockfile
       shell: bash
