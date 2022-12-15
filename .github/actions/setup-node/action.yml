@@ -28,5 +28,5 @@ runs:
         always-auth: true
         scope: ${{ github.repository_owner }}
 
-    - run: pnpm install --ignore-scripts --frozen-lockfile --non-interactive
+    - run: pnpm install --ignore-scripts --frozen-lockfile
       shell: bash
