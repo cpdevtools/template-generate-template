@@ -10,6 +10,10 @@ inputs:
     description: "The version of NodeJs to install"
     required: false
     default: "16.18.x"
+  githubToken:
+    description: "The version of NodeJs to install"
+    required: false
+    default: ${{ github.token }}
 
 runs:
   using: "composite"
@@ -20,6 +24,8 @@ runs:
         run_install: false
 
     - uses: actions/setup-node@v3
+      env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
         node-version: ${{ inputs.nodeVersion }}
         cache: "pnpm"
@@ -30,3 +36,5 @@ runs:
 
     - run: pnpm install --ignore-scripts --frozen-lockfile
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
