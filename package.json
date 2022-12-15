@@ -1,7 +1,7 @@
 {
   "name": "@cpdevtools/template-generate-template",
   "repository": "https://github.com/cpdevtools/template-generate-template",
-  "version": "0.0.1-dev.0",
+  "version": "0.0.1-dev.1",
   "scripts": {
     "prepare": "run-s prepare:*",
     "prepare:clean-tags": "pnpm run clean-tags",
