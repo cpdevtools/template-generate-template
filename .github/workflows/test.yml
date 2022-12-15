@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - "*"
+env:
+  GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
   publish:
@@ -30,7 +32,5 @@ jobs:
           echo ${{github.repository_owner}}
           pnpm install --ignore-scripts
         shell: bash
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
 
       # - uses: ./.github/actions/setup-node
