@@ -13,24 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.6.0
-          run_install: false
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16.18.x
-          cache: "pnpm"
-          cache-dependency-path: pnpm-lock.yaml
-          registry-url: https://npm.pkg.github.com/
-          scope: ${{ github.repository_owner }}
-          always-auth: true
-
-      - run: |
-          echo ${{github.repository_owner}}
-          pnpm install --ignore-scripts
-        shell: bash
-
-      # - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-node
