@@ -17,3 +17,6 @@ jobs:
 
       - name: Install Node & Dependencies
         uses: ./.github/actions/setup-node
+
+      - name: Install Node & Dependencies
+        run: pnpm run actions-test
