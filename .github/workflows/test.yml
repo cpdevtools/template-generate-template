@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - "*"
-env:
-  GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
   publish:
@@ -18,5 +16,8 @@ jobs:
       - name: Install Node & Dependencies
         uses: ./.github/actions/setup-node
 
-      - name: Build and Run Tests
-        run: pnpm run actions-test
+      - name: Build
+        uses: ./.github/actions/build
+
+      - name: Run Tests
+        uses: ./.github/actions/test

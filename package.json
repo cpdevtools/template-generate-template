@@ -19,9 +19,8 @@
     "start": "tsc -w -p .schematic/tsconfig.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier --write --ignore-unknown .",
-    "actions-test": "run-s actions-test:*",
-    "actions-test:build": "pnpm run build",
-    "actions-test:test": "pnpm run test"
+    "actions-test": "pnpm run test",
+    "actions-build:": "pnpm run build"
   },
   "schematics": ".schematic/collection.json",
   "lint-staged": {
