@@ -1,7 +1,7 @@
 {
   "name": "@cpdevtools/template-generate-template",
   "repository": "https://github.com/cpdevtools/template-generate-template",
-  "version": "0.0.1-dev.0",
+  "version": "0.0.1-dev.1",
   "scripts": {
     "prepare": "run-s prepare:*",
     "prepare:clean-tags": "pnpm run clean-tags",
@@ -18,7 +18,9 @@
     "reset-hard:install": "pnpm install",
     "start": "tsc -w -p .schematic/tsconfig.json",
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier --write --ignore-unknown ."
+    "fix:prettier": "prettier --write --ignore-unknown .",
+    "actions-test": "pnpm run test",
+    "actions-build": "pnpm run build"
   },
   "schematics": ".schematic/collection.json",
   "lint-staged": {
@@ -26,9 +28,9 @@
   },
   "devDependencies": {
     "@angular-devkit/schematics": "15.0.4",
-    "@angular-devkit/schematics-cli": "15.0.2",
+    "@angular-devkit/schematics-cli": "15.0.4",
     "@cpdevtools/lib-node-utilities": "0.4.49",
-    "@types/node": "18.11.11",
+    "@types/node": "18.11.17",
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "npm-run-all2": "6.0.4",
