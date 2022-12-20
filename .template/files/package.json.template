@@ -48,5 +48,6 @@
             "prepare:build": "tsc -p .schematic/tsconfig.json",
             "prepare:initialize": "schematics .:initialize --debug=false"
         }
-    }
+    },
+    "fromTemplate": <%= strings.json(package.fromTemplate, 2) %>
 }

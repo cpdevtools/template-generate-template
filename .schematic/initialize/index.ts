@@ -38,9 +38,12 @@ function generateTemplate(options: Options) {
         ...strings,
         lower: (str: string) => str.toLowerCase(),
         upper: (str: string) => str.toUpperCase(),
+        json: (obj: any, indent?: number) => JSON.stringify(obj, undefined, indent),
       },
       versions,
     };
+
+    console.log(tplOpts);
 
     const packagePath = Path.join(process.cwd(), "package.json");
     const pkg = existsSync(packagePath) ? ((await readJsonFile(packagePath)) as PackageJson) : null;
