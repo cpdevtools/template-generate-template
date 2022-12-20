@@ -1,8 +1,0 @@
-name: "Test"
-description: "Test the project"
-
-runs:
-  using: "composite"
-  steps:
-    - run: pnpm run actions-test
-      shell: bash
