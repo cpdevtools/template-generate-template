@@ -13,6 +13,6 @@ jobs:
     if: ${{ github.repository != '<%= repo.owner %>/<%= repo.name %>' }}
     steps:
       - uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
-      - uses: cpdevtools/action-template@v<%= repo.owner %>
+      - uses: cpdevtools/action-template@v<%= versions.CPDEVTOOLS_ACTION_TEMPLATE %>
         with:
           action: init-tpl
