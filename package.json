@@ -27,16 +27,16 @@
     "*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "15.0.2",
-    "@angular-devkit/schematics-cli": "15.0.2",
+    "@angular-devkit/schematics": "15.0.4",
+    "@angular-devkit/schematics-cli": "15.0.4",
     "@cpdevtools/lib-node-utilities": "0.4.49",
-    "@types/node": "18.11.11",
+    "@types/node": "18.11.17",
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "npm-run-all2": "6.0.4",
     "prettier": "2.8.1",
-    "type-fest": "3.3.0",
-    "typescript": "4.9.3"
+    "type-fest": "3.4.0",
+    "typescript": "4.9.4"
   },
   "package-template": {
     "scripts": {
