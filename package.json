@@ -30,7 +30,7 @@
     "@angular-devkit/schematics": "15.0.2",
     "@angular-devkit/schematics-cli": "15.0.2",
     "@cpdevtools/lib-node-utilities": "0.4.49",
-    "@types/node": "18.11.11",
+    "@types/node": "18.11.17",
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "npm-run-all2": "6.0.4",
