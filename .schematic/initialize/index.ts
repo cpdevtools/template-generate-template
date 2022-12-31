@@ -43,8 +43,6 @@ function generateTemplate(options: Options) {
       versions,
     };
 
-    console.log(tplOpts);
-
     const packagePath = Path.join(process.cwd(), "package.json");
     const pkg = existsSync(packagePath) ? ((await readJsonFile(packagePath)) as PackageJson) : null;
     if (pkg) {
