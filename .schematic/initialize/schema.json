@@ -7,7 +7,7 @@
     "templatePath": {
       "description": "The path to the source template",
       "type": "string",
-      "default": "template"
+      "default": ".template"
     },
     "deleteSchematic": {
       "description": "Delete the .schematic folder after init",

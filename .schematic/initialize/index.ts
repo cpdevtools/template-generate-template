@@ -104,10 +104,10 @@ function cleanGenerator(opts: Options) {
     try {
       tree.delete("pnpm-lock.yaml");
     } catch {}
-    try {
-      if (opts.deleteSchematic !== false) {
+    if (opts.deleteSchematic !== false) {
+      try {
         tree.delete(".schematic");
-      }
-    } catch {}
+      } catch {}
+    }
   };
 }
