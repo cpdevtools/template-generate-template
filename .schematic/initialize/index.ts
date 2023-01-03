@@ -111,14 +111,13 @@ function cleanGenerator(opts: Options) {
       try {
         tree.delete(".schematic");
         tree.delete(".template");
-        tree.delete("node_modules");
       } catch {}
     }
   };
 }
 function installPnpm(opts: Options) {
   return async (_tree: Tree, context: SchematicContext) => {
-    context.addTask(
+    const installTaskId = context.addTask(
       new NodePackageInstallTask({
         packageManager: "pnpm",
       })
