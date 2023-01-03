@@ -19,6 +19,7 @@ import type { PackageJson } from "type-fest";
 
 export interface Options {
   templatePath: string;
+  deleteSchematic: boolean;
 }
 
 function generateTemplate(options: Options) {
@@ -95,13 +96,18 @@ export function initialize(options: Options): Rule {
   return chain(rules);
 }
 
-function cleanGenerator(_: Options) {
+function cleanGenerator(opts: Options) {
   return async (tree: Tree, _: SchematicContext) => {
     try {
       tree.delete(".template");
     } catch {}
     try {
       tree.delete("pnpm-lock.yaml");
+    } catch {}
+    try {
+      if (opts.deleteSchematic !== false) {
+        tree.delete(".schematic");
+      }
     } catch {}
   };
 }

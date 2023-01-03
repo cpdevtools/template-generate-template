@@ -1,1 +1,3 @@
-exports.default = {};
+exports.default = {
+  deleteSchematic: false,
+};
