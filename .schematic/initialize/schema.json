@@ -9,8 +9,8 @@
       "type": "string",
       "default": ".template"
     },
-    "deleteSchematic": {
-      "description": "Delete the .schematic folder after init",
+    "finalize": {
+      "description": "clean up template files",
       "type": "boolean",
       "default": true
     }

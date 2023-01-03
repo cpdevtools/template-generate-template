@@ -20,7 +20,7 @@ import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
 
 export interface Options {
   templatePath: string;
-  deleteSchematic: boolean;
+  finalize: boolean;
 }
 
 function generateTemplate(options: Options) {
@@ -107,10 +107,11 @@ function cleanGenerator(opts: Options) {
     try {
       tree.delete("pnpm-lock.yaml");
     } catch {}
-    if (opts.deleteSchematic !== false) {
+    if (opts.finalize !== false) {
       try {
         tree.delete(".schematic");
         tree.delete(".template");
+        tree.delete(".github/workflows/initialize.yml");
       } catch {}
     }
   };
