@@ -16,6 +16,7 @@ import Path from "path/posix";
 import { readJsonFile, readYamlFile } from "@cpdevtools/lib-node-utilities";
 import { existsSync } from "fs";
 import type { PackageJson } from "type-fest";
+import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
 
 export interface Options {
   templatePath: string;
@@ -93,6 +94,8 @@ export function initialize(options: Options): Rule {
 
   rules.push(cleanGenerator(options));
   rules.push(mergeWith(apply(empty(), [generateTemplate(options)]), MergeStrategy.Overwrite));
+  rules.push(installPnpm(options));
+
   return chain(rules);
 }
 
@@ -108,7 +111,17 @@ function cleanGenerator(opts: Options) {
       try {
         tree.delete(".schematic");
         tree.delete(".template");
+        tree.delete("node_modules");
       } catch {}
     }
+  };
+}
+function installPnpm(opts: Options) {
+  return async (_tree: Tree, context: SchematicContext) => {
+    context.addTask(
+      new NodePackageInstallTask({
+        packageManager: "pnpm",
+      })
+    );
   };
 }
