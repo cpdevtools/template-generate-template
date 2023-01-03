@@ -99,7 +99,7 @@ export function initialize(options: Options): Rule {
 function cleanGenerator(opts: Options) {
   return async (tree: Tree, _: SchematicContext) => {
     try {
-      tree.delete(".template");
+      tree.delete(".tpl");
     } catch {}
     try {
       tree.delete("pnpm-lock.yaml");
@@ -107,6 +107,7 @@ function cleanGenerator(opts: Options) {
     if (opts.deleteSchematic !== false) {
       try {
         tree.delete(".schematic");
+        tree.delete(".template");
       } catch {}
     }
   };
