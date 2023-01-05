@@ -6,7 +6,7 @@
   "GITHUB_ACTIONS_CORE": "1.10.0",
   "GITHUB_ACTIONS_CHECKOUT": "3.1.0",
   "GITHUB_ACTIONS_SETUP_NODE": "3.5.1",
-  "HUSKY": "8.0.2",
+  "HUSKY": "8.0.3",
   "LINT_STAGED": "13.1.0",
   "NODEJS": "16.18.1",
   "NODEJS_MAJOR": "16",
@@ -14,8 +14,8 @@
   "PNPM": "7.6.0",
   "PNPM_ACTION_SETUP": "2.2.4",
   "PRETTIER": "2.8.1",
-  "TYPE_FEST": "3.5.0",
+  "TYPE_FEST": "3.5.1",
   "TYPES_NODE": "18.11.18",
   "TYPESCRIPT": "4.9.4",
-  "VERCEL_NCC": "0.34.0"
+  "VERCEL_NCC": "0.36.0"
 }
