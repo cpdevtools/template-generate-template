@@ -7,7 +7,7 @@
     "templatePath": {
       "description": "The path to the source template",
       "type": "string",
-      "default": ".template"
+      "default": ".tpl"
     },
     "finalize": {
       "description": "clean up template files",
