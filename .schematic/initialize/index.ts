@@ -112,7 +112,7 @@ function cleanGenerator(opts: Options) {
       try {
         tree.delete(".schematic");
         tree.delete(".template");
-        tree.delete(".github/workflows/initialize.yml");
+        tree.delete(".github/workflows");
       } catch {}
     }
   };
@@ -135,7 +135,6 @@ export function initialize(options: Args): Rule {
     rules.push(cleanGenerator(tplOpts));
     rules.push(mergeWith(apply(empty(), [generateTemplate(tplOpts)]), MergeStrategy.Overwrite));
     rules.push(installPnpm(tplOpts));
-
     return chain(rules);
   };
 }
